@@ -18,7 +18,8 @@ export default function IndexPage() {
     <main>
       <GoogleReCaptchaProvider
         reCaptchaKey="6LcUv2kiAAAAAOReArJsxu9AUQbhMeCkPBalSL9b"
-        language={i18next.resolvedLanguage}>
+        language={i18next.resolvedLanguage}
+        container={{ element: 'recaptcha-container', parameters: {} }}>
         <ThemeProvider theme={theme}>
           <NavBar />
           <MainContent />
