@@ -1,10 +1,8 @@
 import { SubscriberInput } from '../../../definitions/graphql';
 import { graphql } from 'gatsby';
-import errorSpreads from '../gqlErrorSpreads.helper';
 
 const query = {
-  query:
-    graphql`
+  query: graphql`
       mutation AddSubscriber(
         $email: String!
         $occupation: OccupationInput!
@@ -28,7 +26,13 @@ const query = {
           }
         }
       }
-    ` + errorSpreads.toString(),
+      ... on ServerError {
+        message
+      }
+      ... on Unauthenticated {
+        message
+      }
+    `,
   variables: <SubscriberInput>{
     email: '',
     occupation: {
