@@ -19,19 +19,27 @@ const query = {
         ) {
           __typename
           ... on Subscriber {
-            email
-            occupation
-            products
-            language
-          }
-        }
+      email
+      occupation {
+          name
+          displayName
       }
-      ... on ServerError {
-        message
+      products {
+        name
+        category
       }
-      ... on Unauthenticated {
-        message
-      }
+      language
+    }
+    ... on Unauthenticated {
+      message
+    }
+    ... on ServerError {
+      message
+      stack
+    }
+    ... on WrongEmailFormat {
+      message
+    }
     `,
   variables: <SubscriberInput>{
     email: '',
