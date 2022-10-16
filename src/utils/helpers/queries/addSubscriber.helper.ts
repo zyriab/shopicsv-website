@@ -1,7 +1,7 @@
 import { SubscriberInput } from '../../../definitions/graphql';
 import errorSpreads from '../gqlErrorSpreads.helper';
 
-export default {
+const query = {
   query: `
     mutation AddSubscriber($email: String!, $occupation: String!, $products: [String!]!, $language:  String!) {
       addSubscriber(subscribersInput: { email: $email, occupation: $occupation, products: $products, language: $language }) {
@@ -32,3 +32,5 @@ export default {
     language: '',
   },
 };
+
+export default query;
