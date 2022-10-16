@@ -46,4 +46,4 @@ const query = {
   },
 };
 
-export default query;
+export { query };

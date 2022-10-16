@@ -1,4 +1,4 @@
-import query from '../helpers/queries/addSubscriber.helper';
+import { query } from '../helpers/queries/addSubscriber.helper';
 import checkFetch from '../tools/checkFetch.utils';
 import { Subscriber, SubscriberInput } from '../../definitions/graphql';
 
