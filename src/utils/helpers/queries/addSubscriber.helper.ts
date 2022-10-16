@@ -7,8 +7,8 @@ const query = {
     graphql`
       mutation AddSubscriber(
         $email: String!
-        $occupation: String!
-        $products: [String!]!
+        $occupation: OccupationInput!
+        $products: [ProductInput!]!
         $language: String!
       ) {
         addSubscriber(
