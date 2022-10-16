@@ -6,7 +6,7 @@ import i18next from 'i18next';
 import NavBar from '../components/NavBar/NavBar';
 import MainContent from '../components/MainContent/MainContent';
 import Footer from '../components/Footer/Footer';
-import { lightTheme } from '../utils/theme.utils';
+import { lightTheme } from '../utils/tools/theme.utils';
 import '../utils/translations/translations';
 
 import '../style.css';

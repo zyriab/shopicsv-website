@@ -3,7 +3,7 @@ import { Link, HeadFC } from 'gatsby';
 import NavBar from '../components/NavBar/NavBar';
 import Footer from '../components/Footer/Footer';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { lightTheme } from '../utils/theme.utils';
+import { lightTheme } from '../utils/tools/theme.utils';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import '../utils/translations/translations';
