@@ -3,44 +3,45 @@ import { graphql } from 'gatsby';
 
 const query = {
   query: graphql`
-      mutation AddSubscriber(
-        $email: String!
-        $occupation: OccupationInput!
-        $products: [ProductInput!]!
-        $language: String!
+    mutation AddSubscriber(
+      $email: String!
+      $occupation: OccupationInput!
+      $products: [ProductInput!]!
+      $language: String!
+    ) {
+      addSubscriber(
+        subscriberInput: {
+          email: $email
+          occupation: $occupation
+          products: $products
+          language: $language
+        }
       ) {
-        addSubscriber(
-          subscribersInput: {
-            email: $email
-            occupation: $occupation
-            products: $products
-            language: $language
+        __typename
+        ... on Subscriber {
+          email
+          occupation {
+            name
+            displayName
           }
-        ) {
-          __typename
-          ... on Subscriber {
-      email
-      occupation {
-          name
-          displayName
+          products {
+            name
+            category
+          }
+          language
+        }
+        ... on WrongEmailFormat {
+          message
+        }
+        ... on Unauthenticated {
+          message
+        }
+        ... on ServerError {
+          message
+        }
       }
-      products {
-        name
-        category
-      }
-      language
     }
-    ... on Unauthenticated {
-      message
-    }
-    ... on ServerError {
-      message
-      stack
-    }
-    ... on WrongEmailFormat {
-      message
-    }
-    `,
+  `,
   variables: <SubscriberInput>{
     email: '',
     occupation: {
