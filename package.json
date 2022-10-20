@@ -22,6 +22,8 @@
     "@mui/material": "^5.10.8",
     "dotenv": "^16.0.3",
     "gatsby": "^5.0.0-next.4",
+    "gatsby-plugin-manifest": "^4.24.0",
+    "gatsby-plugin-offline": "^5.24.0",
     "graphql-request": "^5.0.0",
     "i18next-browser-languagedetector": "^6.1.8",
     "lodash.debounce": "^4.0.8",
