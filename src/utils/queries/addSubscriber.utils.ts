@@ -1,19 +1,56 @@
-import { query } from '../helpers/queries/addSubscriber.helper';
+import { GraphQLClient } from 'graphql-request';
 import checkFetch from '../tools/checkFetch.utils';
 import { Subscriber, SubscriberInput } from '../../definitions/graphql';
 
 export default async function addSubscriber(args: SubscriberInput) {
   try {
-    const body = { ...query };
-    query.variables = args;
-
-    const res = await fetch(process.env.REACT_APP_NOUVELL_URL!, {
-      method: 'POST',
+    const client = new GraphQLClient(process.env.GATSBY_NOUVELL_URL!, {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body),
     });
+
+    const res = await client.request(
+      `mutation AddSubscriber(
+        $email: String!
+        $occupation: OccupationInput!
+        $products: [ProductInput!]!
+        $language: String!
+      ) {
+        addSubscriber(
+          subscriberInput: {
+            email: $email
+            occupation: $occupation
+            products: $products
+            language: $language
+          }
+        ) {
+          __typename
+          ... on Subscriber {
+            email
+            occupation {
+              name
+              displayName
+            }
+            products {
+              name
+              category
+            }
+            language
+          }
+          ... on WrongEmailFormat {
+            message
+          }
+          ... on Unauthenticated {
+            message
+          }
+          ... on ServerError {
+            message
+          }
+        }
+      }`,
+      args
+    );
 
     checkFetch(res);
 
