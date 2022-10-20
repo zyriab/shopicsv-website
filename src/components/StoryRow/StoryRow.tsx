@@ -22,18 +22,17 @@ export default function StoryRow() {
             margin: isLg || isXl ? 0 : '2% 0',
             display: 'flex',
             justifyContent: 'center',
-          }}>
+          }}
+        >
           <Stack spacing={2} sx={{ width: '90%' }}>
             <Typography variant="h4" align="center">
               Forged in fire
             </Typography>
             <Typography variant="h6" component="p">
-              While working on a Shopify website, as the need to translate our
-              content from French to English, our team quickly faced the myriad
-              of problems that came with using a spreadsheet app to edit CSV
-              files... so we came up with a tool that would make our lives
-              easier and, feature after feature, what was a basic prototype
-              became ShopiCSV.
+              ShopiCSV was born out of necessity, seeing how time consuming and
+              inneficient it was to edit CSV files in a standard spreadsheet
+              editor we tasked ourselves with the mission to come up with a tool
+              that would be easy to use, customizable and restful for the eyes.
             </Typography>
           </Stack>
         </Grid>
@@ -44,7 +43,8 @@ export default function StoryRow() {
             margin: isLg || isXl ? 0 : '2% 0',
             display: 'flex',
             justifyContent: 'center',
-          }}>
+          }}
+        >
           <Box
             sx={{
               display: 'flex',
@@ -54,14 +54,16 @@ export default function StoryRow() {
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'contain',
               backgroundPosition: 'center',
-            }}>
+            }}
+          >
             <Stack spacing={2}>
               <Button
                 href="https://demo.shopicsv.app/"
                 target="_blank"
                 variant="outlined"
                 size="large"
-                disableElevation>
+                disableElevation
+              >
                 Try the demo
               </Button>
               <Button
@@ -69,7 +71,8 @@ export default function StoryRow() {
                 target="_blank"
                 variant="outlined"
                 size="large"
-                disableElevation>
+                disableElevation
+              >
                 Chat with us on Discord
               </Button>
             </Stack>
@@ -82,19 +85,18 @@ export default function StoryRow() {
             margin: isLg || isXl ? 0 : '2% 0',
             display: 'flex',
             justifyContent: 'center',
-          }}>
+          }}
+        >
           <Stack spacing={2} sx={{ width: '90%' }}>
             <Typography variant="h4" align="center">
               Enjoy direct help from accessible developers
             </Typography>
             <Typography variant="h6" component="p">
-              The biggest adventage of using a small startup's app is, you'll
-              get to talk to the very person who built the service, making
-              resolving issues much easier and faster!
-              <br />
-              It is also an open source handcrafted project which is great, I
-              just have no more functionning brain cell to talk about it but I
-              still need to bulk up this paragraph.
+              We know that what makes a great tool is the ability for the
+              developers to tweak and improve it based on the requests and
+              feednack of the userbase. By being part of the ShopiCSV community
+              you will be able to talk directly to the developers in order to
+              seek help or request new features.
             </Typography>
           </Stack>
         </Grid>
