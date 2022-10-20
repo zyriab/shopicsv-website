@@ -25,13 +25,15 @@ export default function LanguageSelector() {
       return;
     }
 
-    // when user is at the bottom of the page
-    document.documentElement.scrollHeight - window.innerHeight <=
-      document.documentElement.scrollTop + 10 ||
-    document.documentElement.scrollHeight - window.innerHeight <=
-      document.body.scrollTop + 10
-      ? setHide(0)
-      : setHide(1);
+    if (typeof window !== 'undefined') {
+      // when user is at the bottom of the page
+      document.documentElement.scrollHeight - window.innerHeight <=
+        document.documentElement.scrollTop + 10 ||
+      document.documentElement.scrollHeight - window.innerHeight <=
+        document.body.scrollTop + 10
+        ? setHide(0)
+        : setHide(1);
+    }
   }
 
   const language = {
@@ -62,7 +64,8 @@ export default function LanguageSelector() {
       id="lng-button"
       variant="outlined"
       startIcon={getLangText(selected).flag}
-      onClick={toggleShow}>
+      onClick={toggleShow}
+    >
       {getLangText(selected).text} ▼
     </Button>
   );
@@ -80,7 +83,10 @@ export default function LanguageSelector() {
   useEffect(() => {
     isMounted.current = true;
     options.sort((a, b) => a.value.localeCompare(b.value));
-    window.addEventListener('scroll', debouncedHideFn);
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', debouncedHideFn);
+    }
 
     return () => {
       isMounted.current = false;
@@ -107,8 +113,9 @@ export default function LanguageSelector() {
                         ? '3px solid #178b6e'
                         : '3px solid transparent',
                       width: '250px',
-                      justifyContent: 'start'
-                    }}>
+                      justifyContent: 'start',
+                    }}
+                  >
                     <Stack direction="row" spacing={1}>
                       <div>{o.icon}</div>
                       <div>{o.content}</div>

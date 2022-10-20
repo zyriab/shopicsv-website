@@ -31,11 +31,13 @@ export default function BackToTopBtn() {
   useEffect(() => {
     isMounted.current = true;
 
-    window.addEventListener('scroll', debouncedDisplayFn);
-    return () => {
-      isMounted.current = false;
-      debouncedDisplayFn.cancel();
-    };
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', debouncedDisplayFn);
+      return () => {
+        isMounted.current = false;
+        debouncedDisplayFn.cancel();
+      };
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -44,7 +46,8 @@ export default function BackToTopBtn() {
       id="top-btn"
       sx={{ opacity: display }}
       color="primary"
-      onClick={handleScroll}>
+      onClick={handleScroll}
+    >
       <ArrowCircleUpIcon sx={{ fontSize: '3rem' }} />
     </IconButton>
   );

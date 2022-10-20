@@ -25,13 +25,17 @@ export default function NavBar() {
             height: '97%',
             padding: '0 4ch',
             borderBottom: '2px solid #178b6e',
-          }}>
+          }}
+        >
           <Stack
             direction="row"
             justifyContent={isXs ? 'center' : 'space-between'}
             alignItems="center"
-            sx={{ height: '100%' }}>
-            <a href={window.location.origin}>
+            sx={{ height: '100%' }}
+          >
+            <a
+              href={typeof window !== 'undefined' ? window.location.origin : ''}
+            >
               <img style={{ width: 180 }} src={logo} alt="ShopiCSV logo" />
             </a>
             {!isXs && (
@@ -41,7 +45,8 @@ export default function NavBar() {
                   variant="outlined"
                   size="large"
                   disableElevation
-                  disableRipple>
+                  disableRipple
+                >
                   Sign up to our newsletter
                 </Button>
                 <Button
@@ -49,7 +54,8 @@ export default function NavBar() {
                   href="https://demo.shopicsv.app/"
                   variant="contained"
                   size="large"
-                  disableElevation>
+                  disableElevation
+                >
                   Try the demo
                 </Button>
               </Stack>

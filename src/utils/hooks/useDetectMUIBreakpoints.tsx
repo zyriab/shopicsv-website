@@ -19,9 +19,12 @@ export default function useDetectScreenSize() {
     }
 
     handleResize();
-    window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+
+      return () => window.removeEventListener('resize', handleResize);
+    }
   }, []);
 
   return {
@@ -29,6 +32,6 @@ export default function useDetectScreenSize() {
     isSm,
     isMd,
     isLg,
-    isXl
+    isXl,
   };
 }
