@@ -54,14 +54,13 @@ export default async function addSubscriber(args: SubscriberInput) {
 
     checkFetch(res);
 
-    const resData = await res.json();
-    const typename = resData.data.addSubscriber.__typename;
+    const typename = res.addSubscriber.__typename;
 
     if (typename === 'Subscriber') {
-      return resData.data.addSubscriber as Subscriber | undefined;
+      return res.addSubscriber as Subscriber | undefined;
     }
 
-    throw new Error(resData.data.addSubscriber.message);
+    throw new Error(res.addSubscriber.message);
   } catch (e) {
     throw e;
   }
