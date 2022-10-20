@@ -31,8 +31,9 @@ export default function StoryRow() {
             <Typography variant="h6" component="p">
               ShopiCSV was born out of necessity, seeing how time consuming and
               inneficient it was to edit CSV files in a standard spreadsheet
-              editor we tasked ourselves with the mission to come up with a tool
-              that would be easy to use, customizable and restful for the eyes.
+              editor, we tasked ourselves with the mission to come up with a
+              tool that would be easy to use, customizable and restful for the
+              eyes.
             </Typography>
           </Stack>
         </Grid>
@@ -94,7 +95,7 @@ export default function StoryRow() {
             <Typography variant="h6" component="p">
               We know that what makes a great tool is the ability for the
               developers to tweak and improve it based on the requests and
-              feednack of the userbase. By being part of the ShopiCSV community
+              feedback of the userbase. By being part of the ShopiCSV community,
               you will be able to talk directly to the developers in order to
               seek help or request new features.
             </Typography>
