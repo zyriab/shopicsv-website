@@ -32,8 +32,7 @@ export default function NewsletterRow() {
   const [isEmailError, setIsEmailError] = useState(false);
   const [isRecaptchaError, setIsRecaptchaError] = useState(false);
   const [confirmTextOpacity, setConfirmTextOpacity] = useState('0');
-
-  const confirmTextEl = useRef<HTMLSpanElement>(null!);
+  const [isSubscriptionError, setIsSubscriptionError] = useState(false);
 
   const { isXs, isSm } = useDetectBreakpoints();
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -100,10 +99,12 @@ export default function NewsletterRow() {
         language: i18next.resolvedLanguage,
       });
 
+      setOccupation('');
+      setEmail('');
       setConfirmTextOpacity('1');
     } catch (e) {
-      // TODO: handle error
-      console.error(e);
+      setIsSubscriptionError(true);
+      console.error(`Error while subscribing user: ${(e as Error).message}`);
     }
   }
 
@@ -186,15 +187,6 @@ export default function NewsletterRow() {
                               refresh the page and try again
                             </FormHelperText>
                           )}
-                          {/* <FormHelperText
-                            sx={{
-                              color: 'green',
-                              transition: 'opacity 0.5s ease',
-                              opacity: confirmTextOpacity,
-                            }}>
-                            Successfully subscribed, a confirmation has been
-                            sent to your inbox.
-                          </FormHelperText> */}
                         </FormControl>
                       </Box>
                     </Grid>
@@ -211,10 +203,37 @@ export default function NewsletterRow() {
                 </Stack>
               </Box>
             </Box>
-            <Typography align="center" variant="subtitle2">
-              We promise you'll only receive content related to ShopiCSV and
-              your mail won't end up in the wrong hands (no spam either)
-            </Typography>
+            <Box>
+              <Typography align="center" variant="subtitle2">
+                We promise you'll only receive content related to ShopiCSV and
+                your mail won't end up in the wrong hands (no spam either)
+              </Typography>
+              {!isSubscriptionError && (
+                <Typography
+                  align="center"
+                  variant="subtitle2"
+                  sx={{
+                    color: 'green',
+                    transition: 'opacity 0.5s ease',
+                    opacity: confirmTextOpacity,
+                  }}>
+                  Successfully subscribed, a confirmation has been sent to your
+                  inbox.
+                </Typography>
+              )}
+              {isSubscriptionError && (
+                <Typography
+                  align="center"
+                  variant="subtitle2"
+                  sx={{
+                    color: 'red',
+                    transition: 'opacity 0.5s ease',
+                    opacity: isSubscriptionError ? '1' : '0',
+                  }}>
+                  Something went wrong, try again later or contact us!
+                </Typography>
+              )}
+            </Box>
           </Stack>
         </Stack>
       </form>
