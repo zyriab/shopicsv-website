@@ -1,8 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import useDetectBreakpoints from '../../utils/hooks/useDetectMUIBreakpoints';
 import EditorRow from '../EditorRow/EditorRow';
 import FileExplorerRow from '../FileExplorerRow/FileExplorerRow';
 import FiltersRow from '../FiltersRow/FiltersRow';
@@ -14,6 +14,8 @@ import BackToTopBtn from '../BackToTopBtn/BackToTopBtn';
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
 
 export default function MainContent() {
+  const { t } = useTranslation();
+
   return (
     <>
       <Stack>
@@ -22,9 +24,9 @@ export default function MainContent() {
           <Stack>
             <Stack justifyContent="center">
               <Box mt={5} sx={{ textAlign: 'center' }}>
-                <Typography variant="h3">Here's how it works</Typography>
+                <Typography variant="h3">{t('FeaturesBlock.title')}</Typography>
                 <Typography variant="h5">
-                  Just upload your CSV file and you're good to go!
+                  {t('FeaturesBlock.subtitle')}
                 </Typography>
               </Box>
             </Stack>

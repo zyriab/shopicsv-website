@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import useDetectBreakpoints from '../../utils/hooks/useDetectMUIBreakpoints';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -11,6 +12,7 @@ import editorMain from '../../images/editor-main.png';
 
 export default function EditorRow() {
   const { isXs, isLg, isXl } = useDetectBreakpoints();
+  const { t } = useTranslation();
 
   return (
     <Box mx={isXl ? 20 : 4} mt={10} mb={10}>
@@ -31,14 +33,13 @@ export default function EditorRow() {
                   whiteSpace: isXs ? 'normal' : 'nowrap',
                   marginBottom: '5%',
                 }}>
-                Time to ditch Excel.
+                {t('EditorRow.title')}
               </Typography>
               <Typography variant="h5">
-                Translate your Shopify store in a blink, without the hassle of
-                working with a nerve-racking spreadsheet app.
+                {t('EditorRow.description')}
               </Typography>
               <Typography variant="h6">
-                (forget about those import errors too)
+                {t('EditorRow.bottomNote')}
               </Typography>
             </Box>
             <Box>
@@ -48,7 +49,7 @@ export default function EditorRow() {
                 variant="contained"
                 size="large"
                 disableElevation>
-                Try the demo
+                {t('Buttons.demoCTA')}
               </Button>
             </Box>
           </Stack>

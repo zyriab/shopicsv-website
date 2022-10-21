@@ -1,5 +1,5 @@
 import React from 'react';
-import useDetectBreakpoints from '../../utils/hooks/useDetectMUIBreakpoints';
+import { useTranslation } from 'react-i18next';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -13,19 +13,20 @@ import visualBlob from '../../images/visual-blob.png';
 import translationBlob from '../../images/translation-blob.png';
 
 export default function RoadmapRow() {
-  const { isLg, isXl } = useDetectBreakpoints();
+  const { t } = useTranslation();
 
   return (
     <Box mx="10%" mt={15}>
       <Stack spacing={3}>
         <Box>
           <Typography variant="h3" align="center">
-            Great! But what's next?
+            {t('RoadMapRow.title')}
           </Typography>
-          <Typography variant="h5" align="center">
-            We are constantly working to improve ShopiCSV.
-            <br />
-            Here are some of the features to come:
+          <Typography
+            variant="h5"
+            align="center"
+            sx={{ whiteSpace: 'pre-line' }}>
+            {t('RoadMapRow.subtitle')}
           </Typography>
         </Box>
         <Grid
@@ -51,7 +52,7 @@ export default function RoadmapRow() {
                 backgroundPosition: 'center',
               }}>
               <Typography variant="h5" align="center">
-                A product CSV editor
+                {t('RoadMapRow.feature1')}
               </Typography>
             </Box>
           </Grid>
@@ -70,10 +71,11 @@ export default function RoadmapRow() {
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
               }}>
-              <Typography variant="h5" align="center">
-                Visual editors for code templates
-                <br />
-                (email, sms, ...)
+              <Typography
+                variant="h5"
+                align="center"
+                sx={{ whiteSpace: 'pre-line' }}>
+                {t('RoadMapRow.feature2')}
               </Typography>
             </Box>
           </Grid>
@@ -93,7 +95,7 @@ export default function RoadmapRow() {
                 backgroundPosition: 'center',
               }}>
               <Typography variant="h5" align="center">
-                A fully automated translation
+                {t('RoadMapRow.feature3')}
               </Typography>
             </Box>
           </Grid>

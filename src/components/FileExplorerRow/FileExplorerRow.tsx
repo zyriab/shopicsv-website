@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import useDetectBreakpoints from '../../utils/hooks/useDetectMUIBreakpoints';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -9,6 +10,7 @@ import fileExplorer from '../../images/file-explorer.png';
 
 export default function FileExplorerRow() {
   const { isLg, isXl } = useDetectBreakpoints();
+  const { t } = useTranslation();
 
   return (
     <Box mx="10%" mt={10}>
@@ -33,15 +35,16 @@ export default function FileExplorerRow() {
           </Box>
         </Grid>
         <Grid
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'end', marginTop: isLg ||isXl ? 0 : 3 }}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'end',
+            marginTop: isLg || isXl ? 0 : 3,
+          }}
           xs={12}
           lg={6}>
           <Box sx={{ width: '90%' }}>
-            <Typography variant="h5" >
-              Easily upload, download, manage and even restore previous versions
-              of your files, by making use of your dedicated cloud storage,
-              directly inside the application.
-            </Typography>
+            <Typography variant="h5">{t('FileExplorerRow.text')}</Typography>
           </Box>
         </Grid>
       </Grid>

@@ -2,5 +2,60 @@
   "Language": {
     "french": "French",
     "english": "English"
+  },
+  "Buttons": {
+    "demoCTA": "Try the demo",
+    "discordCTA": "Chat with us on Discord",
+    "newsLetterCTA": "Sign up to our newsletter",
+    "newsLetterSignUp": "Sign me up!"
+  },
+  "EditorRow": {
+    "title": "Time to ditch Excel.",
+    "description": "Translate your Shopify store in a blink, without the hassle of working with a nerve-racking spreadsheet app.",
+    "bottomNote": "(forget about those import errors too)"
+  },
+  "FeaturesBlock": {
+    "title": "Here's how it works",
+    "subtitle": "Just upload your CSV file and you're good to go!"
+  },
+  "FileExplorerRow": {
+    "text": "Easily upload, download, manage and even restore previous versions of your files, by making use of your dedicated cloud storage, directly inside the application."
+  },
+  "FiltersRow": {
+    "text": "Filter and navigate easily through your file without getting lost or frustrated, thanks to unique tools and a customizable interface."
+  },
+  "CodeEditorRow": {
+    "title": "Spreadsheet editor vs ShopiCSV",
+    "text": "Translate your emails without banging your head on the table!\nEdit code in a proper editor with integrated search & replace, line numbers, undo/redo and text coloring."
+  },
+  "RoadMapRow": {
+    "title": "Great! But what's next?",
+    "subtitle": "We are constantly working to improve ShopiCSV.\nHere are some of the features to come:",
+    "feature1": "A product CSV editor",
+    "feature2": "Visual editors for code templates\n(email, sms, ...)",
+    "feature3": "A fully automated translation"
+  },
+  "NewsletterRow": {
+    "title": "Ready to save time?",
+    "subtitle": "Sign up to our newsletter to know when ShopiCSV will be available!",
+    "occupationLabel": "I am...",
+    "occupationPro": "A professional",
+    "occupationHob": "A hobbyist",
+    "infoMsg": "We promise you'll only receive content related to ShopiCSV and your email won't end up in the wrong hands (no spam either)",
+    "errorMsg": "Something went wrong, try again later or contact us",
+    "successMsg": "Thank you, a confirmation has been sent to your inbox",
+    "occupationError": "You need to select an occupation",
+    "emailError": "Invalid email",
+    "recaptchaError": "Something went wrong when validating the ReCAPTCHA, disable your adblock if you got one or refresh the page and try again"
+  },
+  "StoryRow": {
+    "storyTitle": "Forged in fire",
+    "storyBody": "ShopiCSV was born out of necessity, seeing how time consuming and inneficient it was to edit CSV files in a standard spreadsheet editor, we tasked ourselves with the mission to come up with a tool that would be easy to use, customizable and restful for the eyes.",
+    "devText": "Enjoy direct help from accessible developers",
+    "devBody": "We know that what makes a great tool is the ability for the developers to tweak and improve it based on the requests and feedback of the userbase. By being part of the ShopiCSV community, you will be able to talk directly to the developers in order to seek help or request new features."
+  },
+  "Footer": {
+    "contact": "Contact",
+    "about": "About"
   }
 }

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import i18next from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import useDetectBreakpoints from '../../utils/hooks/useDetectMUIBreakpoints';
 import verifyRecaptcha from '../../utils/tools/verifyRecaptcha.utils';
@@ -11,10 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
-import FormGroup from '@mui/material/FormGroup';
 import FormHelperText from '@mui/material/FormHelperText';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import InputLabel from '@mui/material/InputLabel';
@@ -22,8 +20,6 @@ import Grid from '@mui/material/Grid';
 
 // @ts-ignore
 import blob from '../../images/newsletter-blob.png';
-
-const occupations = ['A professional', 'A hobbyist'];
 
 export default function NewsletterRow() {
   const [occupation, setOccupation] = useState('');
@@ -36,6 +32,12 @@ export default function NewsletterRow() {
 
   const { isXs, isSm } = useDetectBreakpoints();
   const { executeRecaptcha } = useGoogleReCaptcha();
+  const { t } = useTranslation();
+
+  const occupations = [
+    t('NewsletterRow.occupationPro'),
+    t('NewsletterRow.occupationHob'),
+  ];
 
   function validateFields() {
     setIsOccupationError(false);
@@ -128,10 +130,10 @@ export default function NewsletterRow() {
         <Stack spacing={4}>
           <div>
             <Typography variant="h3" align="center">
-              Ready to save time?
+              {t('NewsletterRow.title')}
             </Typography>
             <Typography variant="h4" align="center">
-              Sign up to our newsletter to know when ShopiCSV will be available!
+              {t('NewsletterRow.subtitle')}
             </Typography>
           </div>
           <Stack spacing={2}>
@@ -139,10 +141,12 @@ export default function NewsletterRow() {
               <Box sx={{ width: isXs || isSm ? '70%' : '33%' }}>
                 <Stack spacing={1}>
                   <FormControl sx={{ width: '60%' }} error={isOccupationError}>
-                    <InputLabel id="occupation">I am...</InputLabel>
+                    <InputLabel id="occupation">
+                      {t('NewsletterRow.occupationLabel')}
+                    </InputLabel>
                     <Select
                       labelId="occupation"
-                      label="I am..."
+                      label={t('NewsletterRow.occupationLabel')}
                       error={isOccupationError}
                       value={occupation}
                       onChange={handleOccupationChange}>
@@ -154,7 +158,7 @@ export default function NewsletterRow() {
                     </Select>
                     {isOccupationError && (
                       <FormHelperText>
-                        You need to select an occupation
+                        {t('NewsletterRow.occupationError')}
                       </FormHelperText>
                     )}
                   </FormControl>
@@ -166,7 +170,9 @@ export default function NewsletterRow() {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                     {isEmailError && (
-                      <FormHelperText>Invalid email</FormHelperText>
+                      <FormHelperText>
+                        {t('NewsletterRow.emailError')}
+                      </FormHelperText>
                     )}
                   </FormControl>
                   <Grid container>
@@ -178,13 +184,11 @@ export default function NewsletterRow() {
                             variant="contained"
                             size="large"
                             disableElevation>
-                            Sign me up!
+                            {t('Buttons.newsLetterSignUp')}
                           </Button>
                           {isRecaptchaError && (
                             <FormHelperText>
-                              Something went wrong when validating the
-                              ReCAPTCHA, disable your adblock if you got one or
-                              refresh the page and try again
+                              {t('NewsletterRow.recaptchaError')}
                             </FormHelperText>
                           )}
                         </FormControl>
@@ -205,8 +209,7 @@ export default function NewsletterRow() {
             </Box>
             <Box>
               <Typography align="center" variant="subtitle2">
-                We promise you'll only receive content related to ShopiCSV and
-                your mail won't end up in the wrong hands (no spam either)
+                {t('NewsletterRow.infoMsg')}
               </Typography>
               {!isSubscriptionError && (
                 <Typography
@@ -217,8 +220,7 @@ export default function NewsletterRow() {
                     transition: 'opacity 0.5s ease',
                     opacity: confirmTextOpacity,
                   }}>
-                  Successfully subscribed, a confirmation has been sent to your
-                  inbox.
+                  {t('NewsletterRow.successMsg')}
                 </Typography>
               )}
               {isSubscriptionError && (
@@ -230,7 +232,7 @@ export default function NewsletterRow() {
                     transition: 'opacity 0.5s ease',
                     opacity: isSubscriptionError ? '1' : '0',
                   }}>
-                  Something went wrong, try again later or contact us!
+                  {t('NewsletterRow.errorMsg')}
                 </Typography>
               )}
             </Box>

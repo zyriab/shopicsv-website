@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import useDetectBreakpoints from '../../utils/hooks/useDetectMUIBreakpoints';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -9,6 +10,7 @@ import filters from '../../images/filters.png';
 
 export default function FiltersRow() {
   const { isXs, isLg, isXl } = useDetectBreakpoints();
+  const { t } = useTranslation();
 
   const text = (
     <Grid
@@ -21,10 +23,7 @@ export default function FiltersRow() {
       xs={12}
       lg={6}>
       <Box sx={{ width: '90%' }}>
-        <Typography variant="h5">
-          Filter and navigate easily through your file without getting lost or
-          frustrated, thanks to unique tools and a customizable interface.
-        </Typography>
+        <Typography variant="h5">{t('FiltersRow.text')}</Typography>
       </Box>
     </Grid>
   );
