@@ -23,7 +23,7 @@ import Grid from '@mui/material/Grid';
 // @ts-ignore
 import blob from '../../images/newsletter-blob.png';
 
-const occupations = ['A professional', 'A hobbyist', "I don't know bro"];
+const occupations = ['A professional', 'A hobbyist'];
 
 export default function NewsletterRow() {
   const [occupation, setOccupation] = useState('');
