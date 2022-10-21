@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import useDetectBreakpoints from '../../utils/hooks/useDetectMUIBreakpoints';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -19,6 +20,7 @@ import githubLogo from '../../images/gh-logo.svg';
 
 export default function Footer() {
   const { isLg, isXl } = useDetectBreakpoints();
+  const { t } = useTranslation();
 
   return (
     <footer style={{ minHeight: '150px' }}>
@@ -51,7 +53,10 @@ export default function Footer() {
                 alt="ShopiCSV"
               />
               <Stack direction="row" justifyContent="center" spacing={1}>
-                <Link href="https://discord.gg/b9Myw2UmMw" target="_blank">
+                <Link
+                  href="https://discord.gg/b9Myw2UmMw"
+                  target="_blank"
+                  sx={{ zIndex: 9999 }}>
                   <img
                     style={{ width: 40 }}
                     src={discordLogo}
@@ -60,14 +65,18 @@ export default function Footer() {
                 </Link>
                 <Link
                   href="https://www.linkedin.com/in/wallenart/"
-                  target="_blank">
+                  target="_blank"
+                  sx={{ zIndex: 9999 }}>
                   <img
                     style={{ width: 40 }}
                     src={linkedinLogo}
                     alt="Linkedin logo"
                   />
                 </Link>
-                <Link href="" target="_blank">
+                <Link
+                  href="https://www.github.com/ZyriabDsgn/ShopiCSV"
+                  target="_blank"
+                  sx={{ zIndex: 9999 }}>
                   <img
                     style={{ width: 40 }}
                     src={githubLogo}
@@ -85,20 +94,20 @@ export default function Footer() {
               justifyContent: 'center',
               margin: isLg || isXl ? 0 : '4% 0 2% 0',
             }}>
-            <Stack direction="row" alignItems="center" spacing={3}>
+            <Stack direction="row" alignItems="center" spacing={4}>
               <Link
                 sx={{ color: '#fff' }}
                 target="_blank"
-                href=""
+                href="https://www.wallenart.dev/#contact"
                 className="links">
-                Contact
+                {t('Footer.contact')}
               </Link>
               <Link
                 sx={{ color: '#fff' }}
                 target="_blank"
-                href=""
+                href="https://www.wallenart.dev/"
                 className="links">
-                About Metaoist Dsgn
+                {t('Footer.about')}
               </Link>
             </Stack>
           </Grid>
