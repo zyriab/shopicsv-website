@@ -240,8 +240,6 @@ export type Product = {
 };
 
 export type ProductInput = {
-  category: Scalars['String'];
-  displayName?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
 };
 
