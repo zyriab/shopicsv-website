@@ -97,7 +97,7 @@ export default function NewsletterRow() {
       await addSubscriber({
         email,
         occupation: { name: occupation },
-        products: [{ name: 'ShopiCSV', category: 'Shopify' }],
+        products: [{ name: 'ShopiCSV' }],
         language: i18next.resolvedLanguage,
       });
 
