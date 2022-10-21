@@ -11,7 +11,7 @@
   },
   "EditorRow": {
     "title": "Time to ditch Excel.",
-    "description": "Translate your Shopify store in a blink, without the hassle of working with a nerve-racking spreadsheet app.",
+    "description": "Translate your Shopify store in a blink, without the risk of destroying it like with a Shopify app or the hassle of working with a nerve-racking spreadsheet editor.",
     "bottomNote": "(forget about those import errors too)"
   },
   "FeaturesBlock": {
@@ -50,7 +50,7 @@
   },
   "StoryRow": {
     "storyTitle": "Forged in fire",
-    "storyBody": "ShopiCSV was born out of necessity, seeing how time consuming and inneficient it was to edit CSV files in a standard spreadsheet editor, we tasked ourselves with the mission to come up with a tool that would be easy to use, customizable and restful for the eyes.",
+    "storyBody": "ShopiCSV was born out of necessity, seeing how time consuming and inneficient it was to edit CSV files in a standard spreadsheet editor and how integrated apps would mess up our websites, we tasked ourselves with the mission to come up with a tool that would be easy to use, customizable, with no chance to destroy the shop and restful for the eyes.",
     "devText": "Enjoy direct help from accessible developers",
     "devBody": "We know that what makes a great tool is the ability for the developers to tweak and improve it based on the requests and feedback of the userbase. By being part of the ShopiCSV community, you will be able to talk directly to the developers in order to seek help or request new features."
   },

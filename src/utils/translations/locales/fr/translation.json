@@ -11,8 +11,8 @@
   },
   "EditorRow": {
     "title": "Il est temps d'abandonner Excel.",
-    "description": "Traduisez votre magasin Shopify en un instant, sans les problèmes liés à l'utilisation d'un éditeur de tableur archaïque.",
-    "bottomNote": "(oubliez ces problèmes d'importation également)"
+    "description": "Traduisez votre magasin Shopify en un instant, sans le risque de le détruire lié aux apps Shopify, ni les problèmes d'utilisation d'un éditeur de tableur archaïque.",
+    "bottomNote": "(et oubliez ces problèmes d'importation)"
   },
   "FeaturesBlock": {
     "title": "Voilà comment ça marche",
@@ -26,7 +26,7 @@
   },
   "CodeEditorRow": {
     "title": "Éditeur de tableur vs ShopiCSV",
-    "text": "Traduisez vous e-mails sans vous prendre la tête !\nÉditez le code dans un éditeur spécialisé avec recherche & remplacement, numéros de ligne, undo/redo (annuler et refaire) et colorisation du texte intégrés."
+    "text": "Traduisez vos e-mails sans vous prendre la tête !\nÉditez le code dans un éditeur spécialisé avec recherche & remplacement, numéros de ligne, undo/redo (annuler et refaire) et colorisation du texte intégrés."
   },
   "RoadMapRow": {
     "title": "Super ! Mais c'est quoi la suite ?",
@@ -48,7 +48,7 @@
   },
   "StoryRow": {
     "storyTitle": "Forgé dans les flammes",
-    "storyBody": "ShopiCSV est né d'une nécessité, voyant comment éditer des fichiers CSV dans une application de tableur standard prenait du temps, nous nous sommes donner la mission de créer un outil qui serait facile d'utilisation, customisable et reposant pour les yeux.",
+    "storyBody": "ShopiCSV est né d'une nécessité, voyant comment éditer des fichiers CSV dans une application de tableur standard prenait du temps et comment les applications intégrées déréglais nos sites, nous nous sommes donné la mission de créer un outil qui serait facile d'utilisation, customisable, n'ayant aucune chance de détruire la boutique et reposant pour les yeux.",
     "devText": "Profitez d'une aide directe de développeurs accéssibles",
     "devBody": "Nous savons que ce qui fait un super outil est l'abilité des développeurs à le modifier et l'améliorer en se basant sur les requêtes et retours des utilisateurs. En faisant partie de la communauté ShopiCSV, vous serez à même de parler directement avec les développeurs afin de résoudre vos problèmes ou de réclamer de nouvelles fonctionnalités."
   },
