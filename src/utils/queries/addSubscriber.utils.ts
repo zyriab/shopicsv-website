@@ -1,5 +1,4 @@
 import { GraphQLClient } from 'graphql-request';
-import checkFetch from '../tools/checkFetch.utils';
 import { Subscriber, SubscriberInput } from '../../definitions/graphql';
 
 export default async function addSubscriber(args: SubscriberInput) {
@@ -51,8 +50,6 @@ export default async function addSubscriber(args: SubscriberInput) {
       }`,
       args
     );
-
-    checkFetch(res);
 
     const typename = res.addSubscriber.__typename;
 
