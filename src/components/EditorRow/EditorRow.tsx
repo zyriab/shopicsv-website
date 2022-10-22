@@ -30,7 +30,6 @@ export default function EditorRow() {
                 variant="h3"
                 component="h1"
                 sx={{
-                  whiteSpace: isXs ? 'normal' : 'nowrap',
                   marginBottom: '5%',
                 }}>
                 {t('EditorRow.title')}
