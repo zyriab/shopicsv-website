@@ -29,7 +29,7 @@ export default function StoryRow() {
             <Typography variant="h4" align="center">
               {t('StoryRow.storyTitle')}
             </Typography>
-            <Typography variant="h6" component="p">
+            <Typography variant="h6" component="p" align="center">
               {t('StoryRow.storyBody')}
             </Typography>
           </Stack>
@@ -84,7 +84,7 @@ export default function StoryRow() {
             <Typography variant="h4" align="center">
               {t('StoryRow.devText')}
             </Typography>
-            <Typography variant="h6" component="p">
+            <Typography variant="h6" component="p" align="center">
               {t('StoryRow.devBody')}
             </Typography>
           </Stack>
