@@ -13,7 +13,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import FormHelperText from '@mui/material/FormHelperText';
-import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Typography from '@mui/material/Typography';
 import InputLabel from '@mui/material/InputLabel';
 import Grid from '@mui/material/Grid';
@@ -29,6 +29,7 @@ export default function NewsletterRow() {
   const [isRecaptchaError, setIsRecaptchaError] = useState(false);
   const [confirmTextOpacity, setConfirmTextOpacity] = useState('0');
   const [isSubscriptionError, setIsSubscriptionError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { isXs, isSm } = useDetectBreakpoints();
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -43,6 +44,7 @@ export default function NewsletterRow() {
     setIsOccupationError(false);
     setIsEmailError(false);
     setIsRecaptchaError(false);
+    setIsSubscriptionError(false);
 
     if (occupation === '') {
       setIsOccupationError(true);
@@ -71,6 +73,8 @@ export default function NewsletterRow() {
         return;
       }
 
+      setIsLoading(true);
+
       let token = await getRecaptchaToken();
       let fetchingToken = false;
       let numOfTries = 0;
@@ -83,6 +87,7 @@ export default function NewsletterRow() {
 
         if (numOfTries >= 3) {
           setIsRecaptchaError(true);
+          setIsLoading(false);
           return;
         }
       }
@@ -104,7 +109,10 @@ export default function NewsletterRow() {
       setOccupation('');
       setEmail('');
       setConfirmTextOpacity('1');
+
+      setIsLoading(false);
     } catch (e) {
+      setIsLoading(false);
       setIsSubscriptionError(true);
       console.error(`Error while subscribing user: ${(e as Error).message}`);
     }
@@ -178,19 +186,15 @@ export default function NewsletterRow() {
                   <Grid container>
                     <Grid item xs={12} lg={6}>
                       <Box sx={{ width: '100%' }}>
-                        <FormControl error={isRecaptchaError}>
-                          <Button
+                        <FormControl>
+                          <LoadingButton
                             onClick={handleSubmit}
                             variant="contained"
                             size="large"
+                            loading={isLoading}
                             disableElevation>
                             {t('Buttons.newsLetterSignUp')}
-                          </Button>
-                          {isRecaptchaError && (
-                            <FormHelperText>
-                              {t('NewsletterRow.recaptchaError')}
-                            </FormHelperText>
-                          )}
+                          </LoadingButton>
                         </FormControl>
                       </Box>
                     </Grid>
@@ -233,6 +237,18 @@ export default function NewsletterRow() {
                     opacity: isSubscriptionError ? '1' : '0',
                   }}>
                   {t('NewsletterRow.errorMsg')}
+                </Typography>
+              )}
+              {isRecaptchaError && (
+                <Typography
+                  align="center"
+                  variant="subtitle2"
+                  sx={{
+                    color: 'red',
+                    transition: 'opacity 0.5s ease',
+                    opacity: isRecaptchaError ? '1' : '0',
+                  }}>
+                  {t('NewsletterRow.recaptchaError')}
                 </Typography>
               )}
             </Box>
