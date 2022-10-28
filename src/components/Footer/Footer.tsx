@@ -98,7 +98,7 @@ export default function Footer() {
               <Link
                 sx={{ color: '#fff' }}
                 target="_blank"
-                href="https://www.wallenart.dev/#contact"
+                href="mailto:hello@metaoist.io"
                 className="links">
                 {t('Footer.contact')}
               </Link>
