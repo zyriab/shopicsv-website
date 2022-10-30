@@ -1,5 +1,7 @@
 import React from 'react';
 import useSiteMetadata from '../../utils/hooks/useSiteMetadata';
+// @ts-ignore
+import bannerLogo from '../../images/logo.svg';
 
 interface SeoProps {
   title?: string;
@@ -14,13 +16,13 @@ export default function Seo(props: SeoProps) {
     description: defaultDescription,
     image,
     siteUrl,
-    twitterUsername,
+    // twitterUsername,
   } = useSiteMetadata();
 
   const seo = {
     title: props.title || defaultTitle,
     description: props.description || defaultDescription,
-    image: `${siteUrl}${image}`,
+    image: bannerLogo,
     url: `${siteUrl}${props.pathname || ``}`,
   };
 
