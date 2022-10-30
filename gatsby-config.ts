@@ -11,6 +11,7 @@ const config: GatsbyConfig = {
     description: `An awesome and non-intrusive business-oriented SaaS especially crafted to edit Shopify's CSV files without destroying your shop while maximizing your productivity`,
     image: `/logo.svg`,
     siteUrl: `https://www.shopicsv.app/`,
+    twitterUsername: ``,
   },
   plugins: [
     {
