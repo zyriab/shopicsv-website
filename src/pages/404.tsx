@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { lightTheme } from '../utils/tools/theme.utils';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Seo from '../components/Seo/Seo';
 import '../utils/translations/translations';
 
 const NotFoundPage = () => {
@@ -15,7 +16,7 @@ const NotFoundPage = () => {
     <main>
       <ThemeProvider theme={theme}>
         <NavBar />
-        <Container sx={{height: '68vh'}}>
+        <Container sx={{ height: '68vh' }}>
           <Typography variant="h3">Page not found</Typography>
           <br />
           <br />
@@ -34,4 +35,9 @@ const NotFoundPage = () => {
 
 export default NotFoundPage;
 
-export const Head: HeadFC = () => <title>Not found</title>;
+export const Head: HeadFC = () => (
+  <>
+    <title>ShopiCSV - Page not found</title>
+    <Seo title="ShopiCSV - Page not found" />
+  </>
+);

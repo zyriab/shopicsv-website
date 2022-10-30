@@ -3,6 +3,7 @@ import type { HeadFC } from 'gatsby';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import i18next from 'i18next';
+import Seo from '../components/Seo/Seo';
 import NavBar from '../components/NavBar/NavBar';
 import MainContent from '../components/MainContent/MainContent';
 import Footer from '../components/Footer/Footer';
@@ -19,8 +20,7 @@ export default function IndexPage() {
       <GoogleReCaptchaProvider
         reCaptchaKey="6LcUv2kiAAAAAOReArJsxu9AUQbhMeCkPBalSL9b"
         language={i18next.resolvedLanguage}
-        container={{ element: 'recaptcha-container', parameters: {} }}
-      >
+        container={{ element: 'recaptcha-container', parameters: {} }}>
         <ThemeProvider theme={theme}>
           <NavBar />
           <MainContent />
@@ -31,4 +31,9 @@ export default function IndexPage() {
   );
 }
 
-export const Head: HeadFC = () => <title>ShopiCSV - Time to ditch Excel</title>;
+export const Head: HeadFC = () => (
+  <>
+    <title>ShopiCSV - Time to ditch Excel</title>
+    <Seo />
+  </>
+);
