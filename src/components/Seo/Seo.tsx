@@ -22,7 +22,7 @@ export default function Seo(props: SeoProps) {
   const seo = {
     title: props.title || defaultTitle,
     description: props.description || defaultDescription,
-    image: bannerLogo,
+    image: image || bannerLogo,
     url: `${siteUrl}${props.pathname || ``}`,
   };
 
