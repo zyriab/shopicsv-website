@@ -1,7 +1,7 @@
 import React from 'react';
 import useSiteMetadata from '../../utils/hooks/useSiteMetadata';
 // @ts-ignore
-import bannerLogo from '../../images/logo.svg';
+import bannerLogo from '../../images/logo.png';
 
 interface SeoProps {
   title?: string;

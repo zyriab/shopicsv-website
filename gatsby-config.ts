@@ -9,7 +9,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `ShopiCSV - Time to ditch Excel`,
     description: `An awesome and non-intrusive business-oriented SaaS especially crafted to edit Shopify's CSV files without destroying your shop while maximizing your productivity`,
-    image: `/logo.svg`,
+    image: `/logo.png`,
     siteUrl: `https://www.shopicsv.app/`,
     twitterUsername: ``,
   },
