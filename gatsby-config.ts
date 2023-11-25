@@ -27,6 +27,7 @@ const config: GatsbyConfig = {
       },
     },
     'gatsby-plugin-offline',
+        'gatsby-plugin-netlify'
   ],
 };
 
