@@ -36,6 +36,7 @@
     "feature3": "A fully automated translation"
   },
   "NewsletterRow": {
+        "deactivatedNewsletterTooltip": "The newsletter is deactivated following an invasion of one-legged penguins",
     "title": "Ready to save time?",
     "subtitle": "Sign up to our newsletter to know when ShopiCSV will be available!",
     "occupationLabel": "I am...",

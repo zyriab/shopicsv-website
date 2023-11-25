@@ -20,241 +20,246 @@ import Grid from '@mui/material/Grid';
 
 // @ts-ignore
 import blob from '../../images/newsletter-blob.png';
+import { Tooltip } from '@mui/material';
 
 export default function NewsletterRow() {
-  const [occupation, setOccupation] = useState('');
-  const [email, setEmail] = useState('');
-  const [isOccupationError, setIsOccupationError] = useState(false);
-  const [isEmailError, setIsEmailError] = useState(false);
-  const [isRecaptchaError, setIsRecaptchaError] = useState(false);
-  const [confirmTextOpacity, setConfirmTextOpacity] = useState('0');
-  const [isSubscriptionError, setIsSubscriptionError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+    const [occupation, setOccupation] = useState('');
+    const [email, setEmail] = useState('');
+    const [isOccupationError, setIsOccupationError] = useState(false);
+    const [isEmailError, setIsEmailError] = useState(false);
+    const [isRecaptchaError, setIsRecaptchaError] = useState(false);
+    const [confirmTextOpacity, setConfirmTextOpacity] = useState('0');
+    const [isSubscriptionError, setIsSubscriptionError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-  const { isXs, isSm } = useDetectBreakpoints();
-  const { executeRecaptcha } = useGoogleReCaptcha();
-  const { t } = useTranslation();
+    const { isXs, isSm } = useDetectBreakpoints();
+    const { executeRecaptcha } = useGoogleReCaptcha();
+    const { t } = useTranslation();
 
-  const occupations = [
-    t('NewsletterRow.occupationPro'),
-    t('NewsletterRow.occupationHob'),
-  ];
+    const occupations = [
+        t('NewsletterRow.occupationPro'),
+        t('NewsletterRow.occupationHob'),
+    ];
 
-  function validateFields() {
-    setIsOccupationError(false);
-    setIsEmailError(false);
-    setIsRecaptchaError(false);
-    setIsSubscriptionError(false);
+    function validateFields() {
+        setIsOccupationError(false);
+        setIsEmailError(false);
+        setIsRecaptchaError(false);
+        setIsSubscriptionError(false);
 
-    if (occupation === '') {
-      setIsOccupationError(true);
-      return false;
-    }
-
-    if (email === '' || !emailValidationRegExp.test(email.toLowerCase())) {
-      setIsEmailError(true);
-      return false;
-    }
-
-    return true;
-  }
-
-  async function getRecaptchaToken() {
-    if (!executeRecaptcha) {
-      return;
-    }
-
-    return await executeRecaptcha();
-  }
-
-  async function handleSubmit() {
-    try {
-      if (!validateFields()) {
-        return;
-      }
-
-      setIsLoading(true);
-
-      let token = await getRecaptchaToken();
-      let fetchingToken = false;
-      let numOfTries = 0;
-
-      while (token == null) {
-        if (fetchingToken === false) {
-          setTimeout(async () => (token = await getRecaptchaToken()), 3000);
-          numOfTries++;
+        if (occupation === '') {
+            setIsOccupationError(true);
+            return false;
         }
 
-        if (numOfTries >= 3) {
-          setIsRecaptchaError(true);
-          setIsLoading(false);
-          return;
+        if (email === '' || !emailValidationRegExp.test(email.toLowerCase())) {
+            setIsEmailError(true);
+            return false;
         }
-      }
 
-      const success = await verifyRecaptcha(token);
-
-      if (success === false) {
-        setIsRecaptchaError(true);
-        return;
-      }
-
-      await addSubscriber({
-        email,
-        occupation: { name: occupation },
-        products: [{ name: 'ShopiCSV' }],
-        language: i18next.resolvedLanguage,
-      });
-
-      setOccupation('');
-      setEmail('');
-      setConfirmTextOpacity('1');
-
-      setIsLoading(false);
-    } catch (e) {
-      setIsLoading(false);
-      setIsSubscriptionError(true);
-      console.error(`Error while subscribing user: ${(e as Error).message}`);
+        return true;
     }
-  }
 
-  function handleOccupationChange(event: SelectChangeEvent) {
-    setOccupation(event.target.value as string);
-  }
+    async function getRecaptchaToken() {
+        if (!executeRecaptcha) {
+            return;
+        }
 
-  return (
-    <Box
-      id="newsletter"
-      mt={10}
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        backgroundImage: `url(${blob})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'contain',
-      }}>
-      <form onSubmit={async () => await handleSubmit()}>
-        <Stack spacing={4}>
-          <div>
-            <Typography variant="h3" align="center">
-              {t('NewsletterRow.title')}
-            </Typography>
-            <Typography variant="h4" align="center">
-              {t('NewsletterRow.subtitle')}
-            </Typography>
-          </div>
-          <Stack spacing={2}>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Box sx={{ width: isXs || isSm ? '70%' : '33%' }}>
-                <Stack spacing={1}>
-                  <FormControl sx={{ width: '60%' }} error={isOccupationError}>
-                    <InputLabel id="occupation">
-                      {t('NewsletterRow.occupationLabel')}
-                    </InputLabel>
-                    <Select
-                      labelId="occupation"
-                      label={t('NewsletterRow.occupationLabel')}
-                      error={isOccupationError}
-                      value={occupation}
-                      onChange={handleOccupationChange}>
-                      {occupations.map((o) => (
-                        <MenuItem key={o} value={o}>
-                          {o}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                    {isOccupationError && (
-                      <FormHelperText>
-                        {t('NewsletterRow.occupationError')}
-                      </FormHelperText>
-                    )}
-                  </FormControl>
-                  <FormControl error={isEmailError}>
-                    <TextField
-                      placeholder="youremail@email.com"
-                      error={isEmailError}
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                    {isEmailError && (
-                      <FormHelperText>
-                        {t('NewsletterRow.emailError')}
-                      </FormHelperText>
-                    )}
-                  </FormControl>
-                  <Grid container>
-                    <Grid item xs={12} lg={6}>
-                      <Box sx={{ width: '100%' }}>
-                        <FormControl>
-                          <LoadingButton
-                            onClick={handleSubmit}
-                            variant="contained"
-                            size="large"
-                            loading={isLoading}
-                            disableElevation>
-                            {t('Buttons.newsLetterSignUp')}
-                          </LoadingButton>
-                        </FormControl>
-                      </Box>
-                    </Grid>
-                    <Grid item xs={12} lg={6}>
-                      <div
-                        id="recaptcha-container"
-                        style={{
-                          transform: 'scale(0.77)',
-                          transformOrigin: '0 0',
-                        }}
-                      />
-                    </Grid>
-                  </Grid>
+        return await executeRecaptcha();
+    }
+
+    async function handleSubmit() {
+        try {
+            if (!validateFields()) {
+                return;
+            }
+
+            setIsLoading(true);
+
+            let token = await getRecaptchaToken();
+            let fetchingToken = false;
+            let numOfTries = 0;
+
+            while (token == null) {
+                if (fetchingToken === false) {
+                    setTimeout(async () => (token = await getRecaptchaToken()), 3000);
+                    numOfTries++;
+                }
+
+                if (numOfTries >= 3) {
+                    setIsRecaptchaError(true);
+                    setIsLoading(false);
+                    return;
+                }
+            }
+
+            const success = await verifyRecaptcha(token);
+
+            if (success === false) {
+                setIsRecaptchaError(true);
+                return;
+            }
+
+            await addSubscriber({
+                email,
+                occupation: { name: occupation },
+                products: [{ name: 'ShopiCSV' }],
+                language: i18next.resolvedLanguage,
+            });
+
+            setOccupation('');
+            setEmail('');
+            setConfirmTextOpacity('1');
+
+            setIsLoading(false);
+        } catch (e) {
+            setIsLoading(false);
+            setIsSubscriptionError(true);
+            console.error(`Error while subscribing user: ${(e as Error).message}`);
+        }
+    }
+
+    function handleOccupationChange(event: SelectChangeEvent) {
+        setOccupation(event.target.value as string);
+    }
+
+    return (
+        <Box
+            id="newsletter"
+            mt={10}
+            sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                backgroundImage: `url(${blob})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: 'contain',
+            }}>
+            <form onSubmit={async () => await handleSubmit()}>
+                <Stack spacing={4}>
+                    <div>
+                        <Typography variant="h3" align="center">
+                            {t('NewsletterRow.title')}
+                        </Typography>
+                        <Typography variant="h4" align="center">
+                            {t('NewsletterRow.subtitle')}
+                        </Typography>
+                    </div>
+                    <Stack spacing={2}>
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Box sx={{ width: isXs || isSm ? '70%' : '33%' }}>
+                                <Stack spacing={1}>
+                                    <FormControl sx={{ width: '60%' }} error={isOccupationError}>
+                                        <InputLabel id="occupation">
+                                            {t('NewsletterRow.occupationLabel')}
+                                        </InputLabel>
+                                        <Select
+                                            labelId="occupation"
+                                            label={t('NewsletterRow.occupationLabel')}
+                                            error={isOccupationError}
+                                            value={occupation}
+                                            onChange={handleOccupationChange}>
+                                            {occupations.map((o) => (
+                                                <MenuItem key={o} value={o}>
+                                                    {o}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                        {isOccupationError && (
+                                            <FormHelperText>
+                                                {t('NewsletterRow.occupationError')}
+                                            </FormHelperText>
+                                        )}
+                                    </FormControl>
+                                    <FormControl error={isEmailError}>
+                                        <Tooltip arrow title={t('NewsletterRow.deactivatedNewsletterTooltip')}>
+                                            <TextField
+                                                disabled
+                                                placeholder="youremail@email.com"
+                                                error={isEmailError}
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                            />
+                                        </Tooltip>
+                                        {isEmailError && (
+                                            <FormHelperText>
+                                                {t('NewsletterRow.emailError')}
+                                            </FormHelperText>
+                                        )}
+                                    </FormControl>
+                                    <Grid container>
+                                        <Grid item xs={12} lg={6}>
+                                            <Box sx={{ width: '100%' }}>
+                                                <FormControl>
+                                                    <LoadingButton
+                                                        disabled
+                                                        onClick={handleSubmit}
+                                                        variant="contained"
+                                                        size="large"
+                                                        loading={isLoading}
+                                                        disableElevation>
+                                                        {t('Buttons.newsLetterSignUp')}
+                                                    </LoadingButton>
+                                                </FormControl>
+                                            </Box>
+                                        </Grid>
+                                        <Grid item xs={12} lg={6}>
+                                            <div
+                                                id="recaptcha-container"
+                                                style={{
+                                                    transform: 'scale(0.77)',
+                                                    transformOrigin: '0 0',
+                                                }}
+                                            />
+                                        </Grid>
+                                    </Grid>
+                                </Stack>
+                            </Box>
+                        </Box>
+                        <Box>
+                            <Typography align="center" variant="subtitle2">
+                                {t('NewsletterRow.infoMsg')}
+                            </Typography>
+                            {!isSubscriptionError && (
+                                <Typography
+                                    align="center"
+                                    variant="subtitle2"
+                                    sx={{
+                                        color: 'green',
+                                        transition: 'opacity 0.5s ease',
+                                        opacity: confirmTextOpacity,
+                                    }}>
+                                    {t('NewsletterRow.successMsg')}
+                                </Typography>
+                            )}
+                            {isSubscriptionError && (
+                                <Typography
+                                    align="center"
+                                    variant="subtitle2"
+                                    sx={{
+                                        color: 'red',
+                                        transition: 'opacity 0.5s ease',
+                                        opacity: isSubscriptionError ? '1' : '0',
+                                    }}>
+                                    {t('NewsletterRow.errorMsg')}
+                                </Typography>
+                            )}
+                            {isRecaptchaError && (
+                                <Typography
+                                    align="center"
+                                    variant="subtitle2"
+                                    sx={{
+                                        color: 'red',
+                                        transition: 'opacity 0.5s ease',
+                                        opacity: isRecaptchaError ? '1' : '0',
+                                    }}>
+                                    {t('NewsletterRow.recaptchaError')}
+                                </Typography>
+                            )}
+                        </Box>
+                    </Stack>
                 </Stack>
-              </Box>
-            </Box>
-            <Box>
-              <Typography align="center" variant="subtitle2">
-                {t('NewsletterRow.infoMsg')}
-              </Typography>
-              {!isSubscriptionError && (
-                <Typography
-                  align="center"
-                  variant="subtitle2"
-                  sx={{
-                    color: 'green',
-                    transition: 'opacity 0.5s ease',
-                    opacity: confirmTextOpacity,
-                  }}>
-                  {t('NewsletterRow.successMsg')}
-                </Typography>
-              )}
-              {isSubscriptionError && (
-                <Typography
-                  align="center"
-                  variant="subtitle2"
-                  sx={{
-                    color: 'red',
-                    transition: 'opacity 0.5s ease',
-                    opacity: isSubscriptionError ? '1' : '0',
-                  }}>
-                  {t('NewsletterRow.errorMsg')}
-                </Typography>
-              )}
-              {isRecaptchaError && (
-                <Typography
-                  align="center"
-                  variant="subtitle2"
-                  sx={{
-                    color: 'red',
-                    transition: 'opacity 0.5s ease',
-                    opacity: isRecaptchaError ? '1' : '0',
-                  }}>
-                  {t('NewsletterRow.recaptchaError')}
-                </Typography>
-              )}
-            </Box>
-          </Stack>
-        </Stack>
-      </form>
-    </Box>
-  );
+            </form>
+        </Box>
+    );
 }
